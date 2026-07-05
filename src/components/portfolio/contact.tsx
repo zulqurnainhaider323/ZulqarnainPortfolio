@@ -68,7 +68,7 @@ export function Contact() {
         </Reveal>
 
         <div className="mt-12 flex flex-wrap justify-center gap-4">
-          <a href="#" className="inline-flex items-center gap-2 px-5 py-3 rounded-2xl bg-white dark:bg-dark-surface border border-slate-200 dark:border-dark-border hover:border-brand-500/60 hover:-translate-y-0.5 transition-all font-medium">
+          <a href="https://github.com/zulqurnainhaider323/" className="inline-flex items-center gap-2 px-5 py-3 rounded-2xl bg-white dark:bg-dark-surface border border-slate-200 dark:border-dark-border hover:border-brand-500/60 hover:-translate-y-0.5 transition-all font-medium">
             <Github className="size-4" /> GitHub
           </a>
           <a href="#" className="inline-flex items-center gap-2 px-5 py-3 rounded-2xl bg-white dark:bg-dark-surface border border-slate-200 dark:border-dark-border hover:border-brand-500/60 hover:-translate-y-0.5 transition-all font-medium">
