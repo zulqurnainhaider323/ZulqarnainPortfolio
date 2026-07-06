@@ -1,5 +1,5 @@
-import { ArrowRight, Mail, Sparkles } from "lucide-react";
-import heroImg from "@/assets/hero-developer.jpg";
+import { ArrowRight, Download, Mail, Sparkles } from "lucide-react";
+import heroImg from "@/assets/profile-pic.jpg";
 
 export function Hero() {
   return (
@@ -30,14 +30,22 @@ export function Hero() {
           </p>
           <div className="animate-fade-in-up [animation-delay:320ms] flex flex-wrap gap-4">
             <a
-              href="#projects"
+              href="/projects"
               className="group inline-flex items-center gap-2 px-8 py-4 bg-brand-600 hover:bg-brand-700 text-white rounded-2xl font-semibold shadow-xl shadow-brand-500/30 transition-all hover:-translate-y-0.5 active:scale-95"
             >
               View Projects
               <ArrowRight className="size-4 transition-transform group-hover:translate-x-0.5" />
             </a>
             <a
-              href="#contact"
+              href="/Zulqarnain-Haider-CV.pdf"
+              download
+              className="inline-flex items-center gap-2 px-8 py-4 border border-brand-500/30 bg-brand-50 text-brand-700 hover:bg-brand-100 dark:bg-brand-500/10 dark:text-brand-300 dark:hover:bg-brand-500/20 rounded-2xl font-semibold transition-all hover:-translate-y-0.5 active:scale-95"
+            >
+              <Download className="size-4" />
+              Download CV
+            </a>
+            <a
+              href="/#contact"
               className="inline-flex items-center gap-2 px-8 py-4 border border-slate-300 dark:border-dark-border bg-white/50 dark:bg-dark-surface/50 backdrop-blur hover:bg-slate-100 dark:hover:bg-dark-surface rounded-2xl font-semibold transition-all hover:-translate-y-0.5 active:scale-95"
             >
               <Mail className="size-4" />
@@ -50,7 +58,7 @@ export function Hero() {
           <div className="animate-float">
             <div className="relative w-full aspect-square rounded-[2.5rem] overflow-hidden shadow-2xl ring-1 ring-black/5 dark:ring-white/10">
               <div className="absolute inset-0 bg-gradient-to-br from-brand-500/20 via-transparent to-accent-500/20 mix-blend-overlay z-10 pointer-events-none" />
-              <img src={heroImg} alt="Developer workspace visualization" className="w-full h-full object-cover" />
+              <img src={heroImg} alt="Profile picture" className="w-full h-full object-cover" />
             </div>
           </div>
           <div className="absolute -bottom-6 -left-6 p-5 bg-white dark:bg-dark-surface rounded-2xl shadow-2xl border border-slate-100 dark:border-dark-border animate-glow-pulse">

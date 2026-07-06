@@ -3,13 +3,13 @@ import { useState } from "react";
 import { ThemeToggle } from "./theme-toggle";
 
 const links = [
-  { href: "#home", label: "Home" },
-  { href: "#about", label: "About" },
-  { href: "#education", label: "Education" },
-  { href: "#skills", label: "Skills" },
-  { href: "#projects", label: "Projects" },
-  { href: "#certifications", label: "Certifications" },
-  { href: "#contact", label: "Contact" },
+  { href: "/#home", label: "Home" },
+  { href: "/#about", label: "About" },
+  { href: "/#education", label: "Education" },
+  { href: "/#skills", label: "Skills" },
+  { href: "/projects", label: "Projects" },
+  { href: "/#certifications", label: "Certifications" },
+  { href: "/#contact", label: "Contact" },
 ];
 
 export function Navbar() {
@@ -17,7 +17,7 @@ export function Navbar() {
   return (
     <nav className="sticky top-0 z-50 w-full border-b border-slate-200/60 dark:border-dark-border/60 bg-white/70 dark:bg-dark-bg/70 backdrop-blur-xl">
       <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-        <a href="#home" className="flex items-center gap-3">
+        <a href="/#home" className="flex items-center gap-3">
           <div className="size-10 rounded-xl bg-gradient-to-br from-brand-500 to-accent-500 grid place-items-center text-white font-bold shadow-lg shadow-brand-500/30">
             Z
           </div>
@@ -33,7 +33,7 @@ export function Navbar() {
             </a>
           ))}
           <a
-            href="#contact"
+            href="/#contact"
             className="text-white bg-brand-600 hover:bg-brand-700 px-5 py-2.5 rounded-full shadow-lg shadow-brand-500/25 hover:scale-105 transition-all"
           >
             Contact

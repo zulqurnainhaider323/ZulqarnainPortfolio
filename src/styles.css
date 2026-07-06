@@ -149,11 +149,16 @@
   33% { transform: translate(30px, -40px) scale(1.05); }
   66% { transform: translate(-20px, 20px) scale(0.95); }
 }
+@keyframes project-scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(calc(-50% - 0.5rem)); }
+}
 
 @utility animate-float { animation: float 6s ease-in-out infinite; }
 @utility animate-fade-in-up { animation: fade-in-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) both; }
 @utility animate-glow-pulse { animation: glow-pulse 3s ease-in-out infinite; }
 @utility animate-blob { animation: blob-drift 18s ease-in-out infinite; }
+@utility animate-project-scroll { animation: project-scroll 26s linear infinite; }
 
 html {
   scroll-behavior: smooth;

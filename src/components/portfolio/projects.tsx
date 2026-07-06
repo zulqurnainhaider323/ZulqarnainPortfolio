@@ -1,112 +1,85 @@
+import { Link } from "@tanstack/react-router";
 import { ArrowUpRight, Github } from "lucide-react";
-import { Reveal } from "./reveal";
-import { SectionHeading } from "./section-heading";
-import carhub from "@/assets/project-carhub.jpg";
-import students from "@/assets/project-students.jpg";
-import library from "@/assets/project-library.jpg";
-import weather from "@/assets/project-weather.jpg";
+import { projects, type Project } from "@/data/projects";
 
-const projects = [
-  {
-    image: carhub,
-    title: "CarHub — Spare Parts Marketplace",
-    description: "Full-stack MERN web platform for buying and selling car spare parts.",
-    features: ["User authentication", "Role-based access (Admin & User)", "Product listing & search", "Cart and order system", "REST APIs"],
-    stack: ["MongoDB", "Express.js", "React.js", "Node.js"],
-    tone: "brand" as const,
-  },
-  {
-    image: students,
-    title: "Student Management System",
-    description: "CRUD-based student management platform using PHP and MySQL.",
-    features: ["Student records management", "Attendance management", "Grades management", "Admin panel with authentication"],
-    stack: ["PHP", "MySQL", "HTML", "CSS"],
-    tone: "accent" as const,
-  },
-  {
-    image: library,
-    title: "Library Management System",
-    description: "Database-integrated system for managing books, issues and returns.",
-    features: ["Book issue and return system", "Search functionality", "Record management"],
-    stack: ["PHP", "MySQL", "HTML", "CSS"],
-    tone: "brand" as const,
-  },
-  {
-    image: weather,
-    title: "Weather App",
-    description: "Real-time weather application using JavaScript and the OpenWeather API.",
-    features: ["City-based weather search", "API integration", "Real-time weather data"],
-    stack: ["JavaScript", "OpenWeather API", "HTML", "CSS"],
-    tone: "accent" as const,
-  },
-];
+export function ProjectCard({ project, compact = false }: { project: Project; compact?: boolean }) {
+  return (
+    <Link
+      to="/projects/$projectId"
+      params={{ projectId: project.slug }}
+      className="group block h-full bg-white dark:bg-dark-surface rounded-2xl overflow-hidden border border-slate-200 dark:border-dark-border hover:shadow-xl hover:shadow-brand-500/10 hover:border-brand-500/40 transition-all hover:-translate-y-1"
+    >
+      <div className="relative w-full aspect-[16/10] overflow-hidden">
+        <img src={project.image} alt={project.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-transparent to-transparent" />
+      </div>
+      <div className={compact ? "p-3.5" : "p-4"}>
+        <div className="flex flex-wrap gap-1.5 mb-3">
+          {project.stack.slice(0, compact ? 2 : 3).map((s) => (
+            <span
+              key={s}
+              className={`px-2 py-0.5 text-[9px] font-bold rounded-full uppercase tracking-wider ${
+                project.tone === "brand"
+                  ? "bg-brand-50 dark:bg-brand-500/10 text-brand-600 dark:text-brand-400 border border-brand-500/20"
+                  : "bg-accent-500/10 text-accent-500 dark:text-accent-400 border border-accent-500/20"
+              }`}
+            >
+              {s}
+            </span>
+          ))}
+        </div>
+        <h3 className="text-lg font-bold mb-2 leading-tight">{project.title}</h3>
+        <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-3">{project.description}</p>
+        {!compact && (
+          <ul className="space-y-1 mb-4">
+            {project.features.slice(0, 3).map((f) => (
+              <li key={f} className="text-xs text-slate-500 dark:text-slate-400 flex gap-2">
+                <span className="text-brand-500 mt-0.5">▹</span>
+                {f}
+              </li>
+            ))}
+          </ul>
+        )}
+        <div className="flex flex-wrap gap-2">
+          <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-brand-600 text-white text-xs font-semibold shadow-md shadow-brand-500/20">
+            View Details <ArrowUpRight className="size-3.5" />
+          </span>
+          {!compact && (
+            <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-slate-200 dark:border-dark-border text-xs font-semibold">
+              <Github className="size-3.5" /> GitHub
+            </span>
+          )}
+        </div>
+      </div>
+    </Link>
+  );
+}
 
 export function Projects() {
+  const scrollingProjects = [...projects, ...projects];
+
   return (
-    <section id="projects" className="py-24 px-6">
+    <section id="projects" className="py-18 px-5">
       <div className="max-w-7xl mx-auto">
-        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-16">
+        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-5 mb-10">
           <div>
-            <p className="text-xs font-bold uppercase tracking-[0.25em] text-brand-500 mb-4">Projects</p>
-            <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight">Featured Works</h2>
-            <p className="text-slate-500 dark:text-slate-400 mt-4 max-w-xl">A selection of my recent full-stack projects, from marketplaces to management systems.</p>
+            <p className="text-[11px] font-bold uppercase tracking-[0.22em] text-brand-500 mb-3">Projects</p>
+            <h2 className="text-2xl md:text-4xl font-extrabold tracking-tight">Featured Works</h2>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-3 max-w-lg">A selection of my recent full-stack projects, from marketplaces to management systems.</p>
           </div>
-          <a href="#contact" className="hidden md:inline-flex items-center gap-1 text-brand-600 dark:text-brand-400 font-bold hover:gap-2 transition-all">
-            Start a project <ArrowUpRight className="size-4" />
-          </a>
+          <Link to="/projects" className="hidden md:inline-flex items-center gap-1 text-sm text-brand-600 dark:text-brand-400 font-bold hover:gap-2 transition-all">
+            View all projects <ArrowUpRight className="size-4" />
+          </Link>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-8">
-          {projects.map((p, i) => (
-            <Reveal key={p.title} delay={i * 100}>
-              <article className="group h-full bg-white dark:bg-dark-surface rounded-[2rem] overflow-hidden border border-slate-200 dark:border-dark-border hover:shadow-2xl hover:shadow-brand-500/10 hover:border-brand-500/40 transition-all hover:-translate-y-2">
-                <div className="relative w-full aspect-[16/10] overflow-hidden">
-                  <img src={p.image} alt={p.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
-                </div>
-                <div className="p-8">
-                  <div className="flex flex-wrap gap-2 mb-4">
-                    {p.stack.map((s) => (
-                      <span
-                        key={s}
-                        className={`px-3 py-1 text-[10px] font-bold rounded-full uppercase tracking-wider ${
-                          p.tone === "brand"
-                            ? "bg-brand-50 dark:bg-brand-500/10 text-brand-600 dark:text-brand-400 border border-brand-500/20"
-                            : "bg-accent-500/10 text-accent-500 dark:text-accent-400 border border-accent-500/20"
-                        }`}
-                      >
-                        {s}
-                      </span>
-                    ))}
-                  </div>
-                  <h3 className="text-2xl font-bold mb-3">{p.title}</h3>
-                  <p className="text-slate-600 dark:text-slate-400 mb-5">{p.description}</p>
-                  <ul className="space-y-1.5 mb-6">
-                    {p.features.map((f) => (
-                      <li key={f} className="text-sm text-slate-500 dark:text-slate-400 flex gap-2">
-                        <span className="text-brand-500 mt-1">▹</span>
-                        {f}
-                      </li>
-                    ))}
-                  </ul>
-                  <div className="flex gap-3">
-                    <a
-                      href="#"
-                      className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-brand-600 hover:bg-brand-700 text-white text-sm font-semibold shadow-lg shadow-brand-500/25 hover:-translate-y-0.5 transition-all"
-                    >
-                      Live Demo <ArrowUpRight className="size-4" />
-                    </a>
-                    <a
-                      href="#"
-                      className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl border border-slate-200 dark:border-dark-border hover:bg-slate-100 dark:hover:bg-dark-bg text-sm font-semibold hover:-translate-y-0.5 transition-all"
-                    >
-                      <Github className="size-4" /> GitHub
-                    </a>
-                  </div>
-                </div>
-              </article>
-            </Reveal>
-          ))}
+        <div className="overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
+          <div className="flex w-max gap-4 animate-project-scroll hover:[animation-play-state:paused]">
+            {scrollingProjects.map((project, index) => (
+              <div key={`${project.slug}-${index}`} className="w-[250px] shrink-0">
+                <ProjectCard project={project} compact />
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>
